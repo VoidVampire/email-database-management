@@ -25,16 +25,16 @@ Please note that this project does not connect to the internet. All email data a
 
 ## Installation
 
-1. Clone the repository to your local machine. 
+1. Create a new folder named "project" on your desktop.
+2. Clone the repository into the "project" folder on your desktop.
 `git clone https://github.com/your_username/email-database-management.git`
-2. Install the required dependencies. You can use pip to install the necessary packages.
+3. Install the required dependencies. You can use pip to install the necessary packages.
 `pip install mysql-connector-python`
-3. Set up the MySQL database:
+4. Set up the MySQL database:
 - Create a new database named `email_db`.
 - Import the `email_db.sql` file located in the project's folder to set up the necessary tables.
-
-4. Update the MySQL database connection details in python file. Modify the `host`, `user`, `password`, and `database` variables to match your local MySQL configuration.
-5. Run the main script to start the application.
+5. Update the MySQL database connection details in python file. Modify the `host`, `user`, `password`, and `database` variables to match your local MySQL configuration.
+6. Run the main script to start the application.
 
 
 ## Usage
