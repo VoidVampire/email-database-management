@@ -1,6 +1,6 @@
-# Email Database Management
+# Local Mail
 
-Email Database Management is a Python-based project that allows users to create an account, send, and receive emails using a local MySQL database. This project aims to provide a practical learning experience in MySQL and Python programming.
+Local Mail is a Python-based project that allows users to create an account, send, and receive emails using a local MySQL database. This project aims to provide a practical learning experience in MySQL and Python programming.
 
 Please note that this project does not connect to the internet. All email data and account information are stored locally in a project folder on the desktop.
 
