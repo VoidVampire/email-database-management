@@ -33,8 +33,7 @@ Please note that this project does not connect to the internet. All email data a
 - Create a new database named `email_db`.
 - Import the `email_db.sql` file located in the project's folder to set up the necessary tables.
 
-4. Open the `config.py` file and update the MySQL database connection details. Modify the `host`, `user`, `password`, and `database` variables to match your local MySQL configuration.
-
+4. Update the MySQL database connection details in python file. Modify the `host`, `user`, `password`, and `database` variables to match your local MySQL configuration.
 5. Run the main script to start the application.
 
 
