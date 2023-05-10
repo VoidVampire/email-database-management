@@ -43,14 +43,6 @@ Please note that this project does not connect to the internet. All email data a
 - Follow the instructions on the screen to navigate through the different features of the email management system.
 - Use the provided commands or menu options to compose, view, and manage emails.
 
-## Contributing
-
-Contributions to this project are welcome. If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Acknowledgments
 
 - [MySQL](https://www.mysql.com/) - The open-source relational database management system.
