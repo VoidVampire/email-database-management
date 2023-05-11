@@ -19,7 +19,7 @@ def login_page():
         while True:
             while True:
                 u1 = input("\nEnter Username :")
-                if u1 in block:
+                if u1 not in block:
                     print("Username not found.")
                     choice_1 = input("Press 1 to try again or anything to exit :")
                     if choice_1 == "1":
@@ -89,13 +89,13 @@ def register_page():
         mycursor.execute(qwery)
         mycursor.execute(qwery_2)
         bcon.commit()
-        fi = open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\inbox\\"+y_id+".txt","a")
+        fi = open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\inbox\\"+y_id+".txt","a")
         fi.close()
-        fd = open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\drafts\\"+y_id+".txt","a")
+        fd = open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\drafts\\"+y_id+".txt","a")
         fd.close()
-        fs = open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\sent\\"+y_id+".txt","a")
+        fs = open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\sent\\"+y_id+".txt","a")
         fs.close()
-        ft = open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\trash\\"+y_id+".txt","a")
+        ft = open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\trash\\"+y_id+".txt","a")
         ft.close()
     else:
         print("MySQL Connection Unsuccessful")
@@ -155,7 +155,7 @@ def report():
 def compose():
     while True:
         receiver = input("\nEnter recepient's username :")
-        if receiver in block:
+        if receiver not in block:
             print("Username not in database")
             choice_1 = input("Press 1 to try again or anything else to exit :")
             if choice_1 == "1":
@@ -165,7 +165,7 @@ def compose():
         elif receiver in ulist:
             break
         else:
-            print("Username not in database")
+            print("Username not in database.")
             choice_1 = input("Press 1 to try again or anything else to exit :")
             if choice_1 == "1":
                 continue
@@ -189,7 +189,7 @@ def compose():
         if confirm == "1":
             mycursor.execute("update mailbox set drafts = drafts + 1 where id = '"+id_active+"'")
             bcon.commit()
-            with open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\drafts\\"+id_active+".txt","a") as x:
+            with open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\drafts\\"+id_active+".txt","a") as x:
                 x.write(qwery)
                 print("Saved in Draft")
                 break
@@ -197,7 +197,7 @@ def compose():
             mycursor.execute("update mailbox set sent = sent + 1 where id = '"+id_active+"'")
             mycursor.execute("update mailbox set inbox = inbox + 1 where id = '"+id_receiver+"'")
             bcon.commit()
-            with open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\sent\\"+id_active+".txt","a") as y, open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\inbox\\"+id_receiver+".txt","a") as q:
+            with open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\sent\\"+id_active+".txt","a") as y, open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\inbox\\"+id_receiver+".txt","a") as q:
                 y.write(qwery)
                 q.write(qwery)
                 print("Sent successfully...")
@@ -217,7 +217,7 @@ def inbox():
     ct = 0
     nlist=[0]
     senderlist = []
-    x = open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\inbox\\"+id_active+".txt","r")
+    x = open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\inbox\\"+id_active+".txt","r")
     data = x.readlines()
     for i in range(len(data)):
         if data[i] == '\n':
@@ -269,7 +269,7 @@ def inbox():
                         print(n[:len(n)-1])
             elif choice == "3":
                 print()
-                x = open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\inbox\\"+id_active+".txt","r")
+                x = open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\inbox\\"+id_active+".txt","r")
                 data = x.readlines()
                 for j in data:
                     print(j[:len(j)-1])
@@ -279,13 +279,13 @@ def inbox():
                 mycursor.execute("update mailbox set inbox = inbox - 1 where id = '"+id_active+"'")
                 bcon.commit()
                 if num == 1:
-                    with open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\trash\\"+id_active+".txt","a") as r, open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\inbox\\"+id_active+".txt","w") as q:
+                    with open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\trash\\"+id_active+".txt","a") as r, open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\inbox\\"+id_active+".txt","w") as q:
                         for p in data[:nlist[num]+1]:
                             r.write(p)
                         for y in data[nlist[num]+1:]:
                             q.write(y)
                 else:
-                    with open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\trash\\"+id_active+".txt","a") as r, open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\inbox\\"+id_active+".txt","w") as q:
+                    with open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\trash\\"+id_active+".txt","a") as r, open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\inbox\\"+id_active+".txt","w") as q:
                         for p in data[nlist[num-1]+1:nlist[num]+1]:
                             r.write(p)
                     
@@ -300,7 +300,7 @@ def inbox():
 def drafts():
     ct = 0
     nlist = [0]
-    w = open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\drafts\\"+id_active+".txt","r")
+    w = open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\drafts\\"+id_active+".txt","r")
     data = w.readlines()
     for i in range(len(data)):
         if data[i] == '\n':
@@ -338,7 +338,7 @@ def drafts():
                     mycursor.execute("update mailbox set sent = sent + 1 where id = '"+id_active+"'")
                     mycursor.execute("update mailbox set drafts = drafts - 1 where id = '"+id_active+"'")
                     bcon.commit()
-                    with open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\sent\\"+id_active+".txt","a") as x, open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\inbox\\"+id_receiver+".txt","a") as y, open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\drafts\\"+id_active+".txt","w") as z:
+                    with open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\sent\\"+id_active+".txt","a") as x, open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\inbox\\"+id_receiver+".txt","a") as y, open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\drafts\\"+id_active+".txt","w") as z:
                         for p in data[:nlist[1]+1]:
                             y.write(p)
                         for q in data[:nlist[1]+1]:
@@ -355,7 +355,7 @@ def drafts():
                     mycursor.execute("update mailbox set sent = sent + 1 where id = '"+id_active+"'")
                     mycursor.execute("update mailbox set drafts = drafts - 1 where id = '"+id_active+"'")
                     bcon.commit()
-                    with open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\sent\\"+id_active+".txt","a") as x, open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\inbox\\"+id_receiver+".txt","a") as y, open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\drafts\\"+id_active+".txt","w") as z:
+                    with open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\sent\\"+id_active+".txt","a") as x, open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\inbox\\"+id_receiver+".txt","a") as y, open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\drafts\\"+id_active+".txt","w") as z:
                         for p in data[nlist[num-1]+1:nlist[num]+1]:
                             y.write(p)
                         for q in data[nlist[num-1]+1:nlist[num]+1]:
@@ -370,7 +370,7 @@ def drafts():
 def sent():
     ct = 0
     nlist = []
-    x = open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\sent\\"+id_active+".txt","r")
+    x = open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\sent\\"+id_active+".txt","r")
     data = x.readlines()
     for i in range(len(data)):
         if data[i] == '\n':
@@ -395,7 +395,7 @@ def sent():
 def trash():
     ct = 0
     nlist = []
-    x = open("C:\\Users\\"+ask_pc+"\\Desktop\\project\\trash\\"+id_active+".txt","r")
+    x = open("C:\\Users\\"+ask_pc+"\\OneDrive\\Desktop\\project\\trash\\"+id_active+".txt","r")
     data = x.readlines()
     for i in range(len(data)):
         if data[i] == '\n':
@@ -452,13 +452,13 @@ for x in data:
     plist.append(x[6])
     tlist.append(x[7])
 block = []
-mycursor.execute("select user_name from user_info where closing_date IS NOT NULL")
+mycursor.execute("select user_name from user_info where closing_date IS NULL")
 data = mycursor.fetchall()
 for x in data:
     if x:
         x = x[0]
     block.append(x)
-    
+print(block)
 count = 0
 print("\nChoose an action :-")
 print("1. Register")
@@ -519,5 +519,3 @@ if count != 0:
                 sys.exit()
 else:
     count = 0
-
-
