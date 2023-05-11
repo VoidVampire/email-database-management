@@ -27,7 +27,7 @@ Please note that this project does not connect to the internet. All email data a
 
 1. Create a new folder named "project" on your desktop.
 2. Clone the repository into the "project" folder on your desktop.
-`git clone https://github.com/your_username/email-database-management.git`
+`https://github.com/VoidVampire/local-mail.git`
 3. Install the required dependencies. You can use pip to install the necessary packages.
 `pip install mysql-connector-python`
 4. Set up the MySQL database:
